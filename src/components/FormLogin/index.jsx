@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { api } from "./../../services/api";
 import { useNavigate } from "react-router-dom";
 
-const FormLogin = ({ setLoged }) => {
+const FormLogin = () => {
   const [login, setLogin] = useState(null);
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ const FormLogin = ({ setLoged }) => {
 
         const token = response.data.token;
 
-        setLoged(response.data.user);
         localStorage.setItem("Token", response.data.token);
         navigate("/dashboard");
       } catch (error) {

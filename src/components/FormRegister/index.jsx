@@ -11,6 +11,7 @@ import { api } from "./../../services/api";
 import { useNavigate } from "react-router-dom";
 import PWDRequisite from "../PWDRequisite";
 import { useOutClick } from "./../../hooks/useOutclick";
+import { formSchema } from "../../services/validation";
 
 const FormRegister = () => {
   const [newUser, setNewUser] = useState(null);
@@ -46,14 +47,11 @@ const FormRegister = () => {
     });
   }
 
-  const formSchema = yup.object().shape({
-    name: yup.string().required("Nome obrigatório"),
-    email: yup.string().required("E-mail obrigatório").email("E-mail inválido"),
-    contact: yup.string().required("Telefone obrigatório"),
-    bio: yup.string().required("Insira uma bio"),
-  });
-
-  const { register, handleSubmit } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(formSchema),
   });
 
@@ -116,6 +114,7 @@ const FormRegister = () => {
             placeholder="Digite aqui seu nome"
             {...register("name")}
           />
+          {errors.name?.message}
 
           <label htmlFor="email">Email</label>
           <input
@@ -125,6 +124,7 @@ const FormRegister = () => {
             placeholder="Digite aqui seu email"
             {...register("email")}
           />
+          {errors.email?.message}
 
           <label htmlFor="senha">Senha</label>
           <input
@@ -137,6 +137,7 @@ const FormRegister = () => {
             onKeyUp={handleOnKeyUp}
             {...register("password")}
           />
+          {errors.password?.message}
           <div className="relative">
             {pwdRequisite ? (
               <PWDRequisite
@@ -164,6 +165,7 @@ const FormRegister = () => {
             placeholder="Fale sobre você"
             {...register("bio")}
           />
+          {errors.bio?.message}
 
           <label htmlFor="contato">Contato</label>
           <input
@@ -173,6 +175,7 @@ const FormRegister = () => {
             placeholder="Opção de contato"
             {...register("contact")}
           />
+          {errors.contact?.message}
 
           <label htmlFor="modulo">Selecionar módulo</label>
           <select name="" id="modulo" {...register("course_module")}>

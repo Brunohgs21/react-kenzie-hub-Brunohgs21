@@ -3,11 +3,11 @@ import DashboardInfo from "../../components/DashboardInfo/index.jsx";
 import DashboardMain from "../../components/DashboardMain/index.jsx";
 import { Div } from "./../Login/index";
 
-const DashBoard = ({ loged }) => {
+const DashBoard = () => {
   return (
     <Div>
       <DashboardHeader />
-      <DashboardInfo loged={loged} />
+      <DashboardInfo />
       <DashboardMain />
     </Div>
   );

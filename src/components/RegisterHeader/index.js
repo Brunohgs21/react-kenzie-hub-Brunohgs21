@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as LinkRouter } from "react-router-dom";
 
 export const Div = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background: #121214;
   display: flex;
@@ -11,6 +11,7 @@ export const Div = styled.div`
   flex-direction: column;
 
   section {
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,7 +44,7 @@ export const Div = styled.div`
     gap: 0.6344rem;
 
     width: 100%;
-    height: 2.1875rem;
+    height: 2rem;
 
     /* grey-2 */
 
@@ -216,6 +217,8 @@ export const Nav = styled.div`
 `;
 
 export const Link = styled(LinkRouter)`
+  margin-top: 20px;
+
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -292,6 +295,7 @@ export const Logo = styled.h1`
   color: #ff577f;
 `;
 export const Logo2 = styled.h1`
+  margin-top: 20px;
   font-family: "Inter", sans-serif;
 
   /* color-primary */

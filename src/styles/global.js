@@ -17,7 +17,7 @@ export default createGlobalStyle`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
+    
     }
 }
 `;

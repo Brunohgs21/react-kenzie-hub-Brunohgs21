@@ -2,10 +2,10 @@ import FormLogin from "../../components/FormLogin";
 import { Container } from "../../components/RegisterHeader";
 import Div from "./index";
 
-const Login = ({ setLoged }) => {
+const Login = () => {
   return (
     <Container>
-      <FormLogin setLoged={setLoged} />
+      <FormLogin />
     </Container>
   );
 };
