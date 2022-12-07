@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login/Login";
-import DashBoard from "./../pages/Dashboard";
-import Register from "./../pages/Register";
+import DashBoard from "../pages/Dashboard";
+import Register from "../pages/Register";
 import { useState } from "react";
 
 const RoutesMain = () => {
