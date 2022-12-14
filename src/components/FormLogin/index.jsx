@@ -1,41 +1,17 @@
 import { BtnLink, Div, Logo } from "./../RegisterHeader/index";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { api } from "./../../services/api";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "./../../contexts/AuthContext";
+import { useContext } from "react";
 
 const FormLogin = () => {
-  const [login, setLogin] = useState(null);
+  const { login } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
-  const navigate = useNavigate();
-
-  const onSubmitFunction = (data) => {
-    setLogin(data);
-  };
-
-  useEffect(() => {
-    if (login != null) {
-      toLogin();
-    }
-    async function toLogin() {
-      try {
-        const response = await api.post("sessions", login);
-
-        const token = response.data.token;
-
-        localStorage.setItem("Token", response.data.token);
-        navigate("/dashboard");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [login]);
 
   return (
     <Div>
       <Logo>Kenzie Hub</Logo>
       <section>
-        <form onSubmit={handleSubmit(onSubmitFunction)}>
+        <form onSubmit={handleSubmit(login)}>
           <div className="text">
             <p className="text1">Login</p>
           </div>

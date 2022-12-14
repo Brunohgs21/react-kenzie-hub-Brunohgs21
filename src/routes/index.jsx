@@ -3,6 +3,7 @@ import Login from "../pages/Login/Login";
 import DashBoard from "../pages/Dashboard";
 import Register from "../pages/Register";
 import { useState } from "react";
+import { ProtectedRoutes } from "../components/ProtectedRoutes";
 
 const RoutesMain = () => {
   return (
@@ -10,7 +11,9 @@ const RoutesMain = () => {
       <Route path="/" element={<Login />} />
       <Route path="*" element={<Navigate to="/" />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<DashBoard />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/dashboard" element={<DashBoard />} />
+      </Route>
     </Routes>
   );
 };
