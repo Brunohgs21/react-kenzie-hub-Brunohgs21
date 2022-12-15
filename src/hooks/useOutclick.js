@@ -9,7 +9,10 @@ export const useOutClick = (callback) => {
       const target = event.target;
       const element = ref.current;
 
-      if (element.contains(target) && target.name != "password") {
+      if (
+        (element.contains(target) && target.name != "password") ||
+        target.tagName == "BUTTON"
+      ) {
         callback();
       } else {
       }

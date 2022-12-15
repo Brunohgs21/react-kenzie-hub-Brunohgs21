@@ -1,102 +1,22 @@
 import RegisterHeader from "./../RegisterHeader/RegisterHeader";
-import * as yup from "yup";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { Div } from "../RegisterHeader";
-import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
-import { api } from "./../../services/api";
-import { useNavigate } from "react-router-dom";
 import PWDRequisite from "../PWDRequisite";
-import { useOutClick } from "./../../hooks/useOutclick";
-import { formSchema } from "../../services/validation";
+import { AuthContext } from "./../../contexts/AuthContext";
+import { useContext } from "react";
 
 const FormRegister = () => {
-  const [newUser, setNewUser] = useState(null);
-  const navigate = useNavigate();
-  const [pwdRequisite, setPWDRequisite] = useState(false);
-  const [checks, setChecks] = useState({
-    capsLetterCheck: false,
-    numerCheck: false,
-    pwdLengthCheck: false,
-    specialCharCheck: false,
-  });
-  const clickRef = useOutClick(() => setPWDRequisite(false));
-
-  function handleOnFocus() {
-    setPWDRequisite(true);
-  }
-
-  function call() {
-    setPWDRequisite(false);
-  }
-
-  function handleOnKeyUp(e) {
-    const { value } = e.target;
-    const capsLetterCheck = /[A-Z]/.test(value);
-    const numberCheck = /[0123456789]/.test(value);
-    const pwdLengthCheck = value.length >= 8;
-    const specialCharCheck = /[!@#$%^&*]/.test(value);
-    setChecks({
-      capsLetterCheck,
-      numberCheck,
-      pwdLengthCheck,
-      specialCharCheck,
-    });
-  }
-
   const {
+    handleOnFocus,
+    handleOnKeyUp,
+    pwdRequisite,
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(formSchema),
-  });
-
-  const onSubmitFunction = (data) => {
-    if (data.confirmation == data.password) {
-      let { email, name, contact, password, bio, course_module } = data;
-
-      const user = {
-        name: name,
-        email: email,
-        contact: contact,
-        password: password,
-        bio: bio,
-        course_module: course_module,
-      };
-
-      setNewUser(user);
-    } else {
-      setNewUser(null);
-      toast.error("As senhas digitadas são diferentes");
-    }
-  };
-
-  useEffect(() => {
-    if (newUser != null) {
-      setUser();
-    }
-
-    async function setUser() {
-      try {
-        const response = await api.post("users", newUser);
-
-        toast.success("Conta criada com sucesso!");
-        setTimeout(() => {
-          navigate("/");
-        }, 5000);
-      } catch (err) {
-        console.log(err);
-        toast.error("Ops! Algo deu errado");
-      } finally {
-        setNewUser(null);
-      }
-    }
-  }, [newUser]);
-
+    onSubmitFunction,
+    errors,
+    checks,
+    clickRef,
+  } = useContext(AuthContext);
   return (
     <Div ref={clickRef}>
       <RegisterHeader />
@@ -133,7 +53,6 @@ const FormRegister = () => {
             id="senha"
             placeholder="Digite aqui sua senha"
             onFocus={handleOnFocus}
-            onBlur={call}
             onKeyUp={handleOnKeyUp}
             {...register("password")}
           />

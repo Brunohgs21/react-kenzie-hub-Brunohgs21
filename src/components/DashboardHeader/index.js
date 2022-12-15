@@ -135,6 +135,37 @@ export const Main = styled.div`
 
     color: #ffffff;
   }
+
+  div {
+    display: flex;
+    padding: 0 12.5rem 0 12.5rem;
+    justify-content: space-between;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  .techText {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #f8f9fa;
+  }
+
+  .addBtn {
+    height: 32px;
+    width: 32.485294342041016px;
+    background: #212529;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: large;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 export const DivCheck = styled.div`
@@ -148,4 +179,49 @@ export const DivCheck = styled.div`
   .invalid {
     color: white;
   }
+`;
+
+export const List = styled.div`
+  padding: 0 12.5rem 0 12.5rem;
+  width: 100%;
+
+  height: 416px;
+
+  ul {
+    background-color: #212529;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const DivModal = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 68px 22px 32px;
+  gap: 22px;
+
+  position: fixed;
+  width: 369px;
+  height: 342px;
+
+  overflow-y: scroll;
+
+  background: #212529;
+  box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+`;
+
+export const BackGround = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 1;
+  top: 0;
 `;
